@@ -86,7 +86,7 @@ const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' 
   }),
 );
 
-export default function MiniDrawer() {
+export default function Sidebar() {
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
 
@@ -101,32 +101,22 @@ export default function MiniDrawer() {
   return (
     <Box sx={{ display: 'flex' }}>
       <CssBaseline />
-      <AppBar position="fixed" open={open}>
-        <Toolbar>
-          <IconButton
-            color="inherit"
-            aria-label="open drawer"
-            onClick={handleDrawerOpen}
-            edge="start"
-            sx={{
-              marginRight: 5,
-              ...(open && { display: 'none' }),
-            }}
-          >
-            <MenuIcon />
-          </IconButton>
-          <Typography variant="h32" noWrap component="div">
-            Weight Tracking Application
-          </Typography>
-        </Toolbar>
-      </AppBar>
-      <Drawer variant="permanent" open={open}>
+      <Drawer variant="permanent"
+         open={open}>
         <DrawerHeader>
-          <IconButton onClick={handleDrawerClose}>
-            {theme.direction === 'rtl' ? <ChevronRightIcon /> : <ChevronLeftIcon />}
+          <Typography variant="logo" >DNZR</Typography>
+          <IconButton color="inherit"
+            aria-label="open drawer"
+            onClick={open ? handleDrawerClose : handleDrawerOpen}
+            sx={{
+              minHeight: 48,
+              justifyContent: open ? 'initial' : 'center',
+              px: 1.5,
+              marginLeft: 4,
+            }}>
+            {open? <ChevronLeftIcon /> : <ChevronRightIcon />}
           </IconButton>
         </DrawerHeader>
-        <Divider />
         <List>
           {['Profile', 'Weight Tracker',].map((text, index) => (
             <ListItem key={text} disablePadding sx={{ display: 'block' }}>
@@ -135,6 +125,9 @@ export default function MiniDrawer() {
                   minHeight: 48,
                   justifyContent: open ? 'initial' : 'center',
                   px: 2.5,
+                  ":hover": {
+                    backgroundColor: "#FFDDA6"
+                  }
                 }}
               >
                 <ListItemIcon
@@ -142,20 +135,25 @@ export default function MiniDrawer() {
                     minWidth: 0,
                     mr: open ? 3 : 'auto',
                     justifyContent: 'center',
+                    ":hover": {
+                      color: "white"
+                    }
                   }}
                 >
                   {index % 2 === 0 ? <PersonIcon /> : <FitnessCenterIcon />}
                 </ListItemIcon>
-                <ListItemText primary={text} sx={{ opacity: open ? 1 : 0 }} />
+                <ListItemText primary={
+                  <Typography variant="listItem">
+                  {text}
+                  </Typography>}
+                  sx={{
+                    opacity: open ? 2 : 0,
+                  }} />
               </ListItemButton>
             </ListItem>
           ))}
         </List>
-        <Divider />
       </Drawer>
-      <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
-        <DrawerHeader />
-      </Box>
     </Box>
   );
 }

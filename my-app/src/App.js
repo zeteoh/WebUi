@@ -1,13 +1,13 @@
-import logo from './logo.svg';
 import './App.css';
-import react from "react";
-import Sidebar from "./sidebar";
+import { ThemeProvider } from "@mui/material/styles";
+import Sidebar from "./components/Sidebar";
+import { baseTheme } from "./assets/theme/theme"
 
 function App() {
   return (
-    <div className="App">
-      <Sidebar></Sidebar>
-    </div>
+    <ThemeProvider theme={baseTheme}>
+        <Sidebar></Sidebar>
+    </ThemeProvider>
   );
 }
 
