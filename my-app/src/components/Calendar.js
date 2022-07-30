@@ -14,14 +14,7 @@ export default function MyCalendar(){
         onChange={changeDate}
       /> */}
 
-      <Calendar
-        // autoOk
-        // orientation="landscape"
-        // variant="static"
-        // openTo="date"
-        value={date}
-        onChange={changeDate}
-      />
+    <Calendar onChange={changeDate} value={date} />
     </>
   );
 };

@@ -7,10 +7,19 @@ import MyCalendar from "./components/Calendar";
 function App() {
   return (
     <div>
-    <ThemeProvider theme={baseTheme}>
-        <Sidebar></Sidebar>
-    </ThemeProvider>
-    <MyCalendar></MyCalendar>
+      <ThemeProvider theme={baseTheme}>
+          <Sidebar></Sidebar>
+      </ThemeProvider>
+      <div class="float-container">
+
+        <div class="float-child">
+        </div>
+        
+        <div class="float-child">
+          <MyCalendar className="calendarClass"></MyCalendar>
+        </div>
+          
+      </div>
     </div>
     
   );
